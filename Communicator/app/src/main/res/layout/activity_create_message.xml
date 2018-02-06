@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.katarzynawojtowicz.communicator.CreateMessageActivity"
+    tools:ignore="ExtraText">
+
+    <Button
+        android:id='@+id/send'
+        android:layout_width='wrap_content'
+        android:layout_height='wrap_content'
+        android:layout_alignParentLeft='true'
+        android:layout_alignParentTop='true'
+        android:onClick='onSendMessage'
+        android:text='@string/send'
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id='@+id/message'
+        android:layout_width='wrap_content'
+        android:layout_height='wrap_content'
+        android:layout_below='@+id/send'
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="false"
+        android:ems='10'
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="100dp">
+
+    </EditText>
+
+</RelativeLayout>
