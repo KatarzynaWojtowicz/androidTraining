@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
+import android.widget.EditText;
+
 
 public class CreateMessageActivity extends Activity {
     @Override
@@ -13,9 +15,11 @@ public class CreateMessageActivity extends Activity {
     }
 
     public void onSendMessage(View view) {
-        Intent intent = new Intent(this, ReceiveMessageActivity.class);
+        EditText messageView = (EditText)findViewById(R.id.message);
+        String messageText = messageView.getText().toString();
+        Intent intent = new Intent(this, RecieveMessageActivity.class);
+        intent.putExtra(RecieveMessageActivity.EXTRA_MESSAGE, messageText);
         startActivity(intent);
-
     }
 }
 
