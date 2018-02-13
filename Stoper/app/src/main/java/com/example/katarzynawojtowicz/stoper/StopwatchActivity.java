@@ -7,27 +7,17 @@ import android.view.View;
 import android.widget.TextView;
 
 public class StopwatchActivity extends Activity {
-
-
     private int seconds = 0;
     private boolean running;
+    private boolean wasRunning;
 
     @Override
-        protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stopwatch);
-            if (savedInstanceState != null) {
-                seconds = savedInstanceState.getInt("seconds");
-                running = savedInstanceState.getBoolean("running");
-            }
-            runTimer();
-        }
-
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putInt("seconds", seconds);
-        savedInstanceState.putBoolean("running", running);
+        runTimer();
     }
+
     public void onClickStart(View view) {
         running = true;
     }
@@ -39,6 +29,26 @@ public class StopwatchActivity extends Activity {
     public void onClickReset(View view) {
         running = false;
         seconds = 0;
+
+    }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt("seconds", seconds);
+        savedInstanceState.putBoolean("running", running);
+        savedInstanceState.putBoolean("wasRunning", wasRunning);
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        wasRunning = running;
+        running = false;
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (wasRunning) {
+            running = true;
+        }
     }
 
     private void runTimer() {
@@ -56,8 +66,9 @@ public class StopwatchActivity extends Activity {
                 if (running) {
                     seconds++;
                 }
-
-                handler.postDelayed(this, 1000); }
-        });
+                handler.postDelayed(this, 1000);
+            }
+        }
+        );
     }
 }
