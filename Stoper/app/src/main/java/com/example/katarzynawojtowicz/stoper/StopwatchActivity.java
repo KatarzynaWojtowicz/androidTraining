@@ -50,7 +50,7 @@ public class StopwatchActivity extends Activity {
         if (wasRunning) {
             running = true; }
     }
-    
+
 
     private void runTimer() {
         final TextView timeView = (TextView)findViewById(R.id.time_view);
